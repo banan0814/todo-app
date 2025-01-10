@@ -5,20 +5,18 @@ import { ConfirmationModalComponent } from './confirmation-modal.component';
 
 describe('ConfirmationModalComponent', () => {
   let fixture: ComponentFixture<ConfirmationModalComponent>;
-  let component: ConfirmationModalComponent;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       declarations: [ConfirmationModalComponent],
       imports: [BrowserAnimationsModule, MatDialogModule],
       providers: [
-        {provide: MAT_DIALOG_DATA, useValue: {title: 'Confirm', description: 'Are you sure?'}},
+        {provide: MAT_DIALOG_DATA, useValue: {title: 'Confirm', description: 'Test description'}},
         {provide: MatDialogRef, useValue: jasmine.createSpyObj('MatDialogRef', ['close'])}
       ]
     }).compileComponents();
 
     fixture = TestBed.createComponent(ConfirmationModalComponent);
-    component = fixture.componentInstance;
     fixture.detectChanges();
   });
 
@@ -28,6 +26,6 @@ describe('ConfirmationModalComponent', () => {
     const description = dialogElement.querySelector('mat-dialog-content p');
 
     expect(title?.textContent).toBe('Confirm');
-    expect(description?.textContent).toBe('Are you sure?');
+    expect(description?.textContent).toBe('Test description');
   });
 });

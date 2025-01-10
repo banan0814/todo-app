@@ -132,6 +132,7 @@ describe('ListComponent', () => {
     expect(component.pageIndex).toBe(1);
     expect(component.pageSize).toBe(5);
     expect(component.paginatedView.length).toBeLessThanOrEqual(5);
-    expect(component.paginatedView[0].id).toBe('5'); // Ellenőrzi, hogy az aktuális oldal első eleme helyes
+    // Ellenőrzi, hogy az aktuális oldal első eleme helyes
+    expect(component.paginatedView[0].id).toBe('5');
   });
 });
