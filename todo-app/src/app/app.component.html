@@ -1,0 +1,43 @@
+<mat-sidenav-container class="container">
+  <mat-sidenav
+    #sidenav mode="over">
+    <div class="sidenav flex-col">
+      <h1>{{ title }}</h1>
+      <nav class="flex-col space-small">
+        <a
+          class="nav-element"
+          mat-button
+          routerLink="/"
+          routerLinkActive="active-link"
+          [routerLinkActiveOptions]="{exact: true}"
+          (click)="sidenav.toggle()">
+          <mat-icon>list</mat-icon>
+          Todo List
+        </a>
+        <a
+          class="nav-element"
+          mat-button
+          routerLink="/todo-edit"
+          routerLinkActive="active-link"
+          [routerLinkActiveOptions]="{exact: true}"
+          (click)="sidenav.toggle()">
+          <mat-icon>edit</mat-icon>
+          Create Todo
+        </a>
+      </nav>
+    </div>
+  </mat-sidenav>
+
+  <mat-sidenav-content>
+    <mat-toolbar>
+      <button
+        (click)="sidenav.toggle()"
+        mat-icon-button
+        aria-label="Menu button">
+        <mat-icon>menu</mat-icon>
+      </button>
+      <h1>{{ title }}</h1>
+    </mat-toolbar>
+    <router-outlet></router-outlet>
+  </mat-sidenav-content>
+</mat-sidenav-container>

@@ -1,0 +1,22 @@
+<div class="page-container">
+  <form
+    class="todo-form"
+    #formDirective="ngForm"
+    [formGroup]="todoItemFrom"
+    (ngSubmit)="onSubmit(formDirective)">
+    <mat-form-field class="description">
+      <mat-label>Description</mat-label>
+      <input
+        required
+        matInput
+        placeholder="Todo elem leírása"
+        formControlName="description">
+      @if (todoItemFrom.controls.description.invalid) {
+        <mat-error>A mező kitöltése kötelező</mat-error>
+      }
+    </mat-form-field>
+    <button mat-raised-button type="submit" [disabled]="!todoItemFrom.valid">
+      {{ isEditByNavigation ? 'Elem szerkesztése' : 'Hozzáadás a listához' }}
+    </button>
+  </form>
+</div>
