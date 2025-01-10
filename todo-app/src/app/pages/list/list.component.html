@@ -33,12 +33,14 @@
               </div>
               <div class="flex-row">
                 <button
+                  id="navigateToEdit"
                   (click)="navigateToEdit(todo)"
                   mat-icon-button
                   aria-label="Edit todo element">
                   <mat-icon>edit</mat-icon>
                 </button>
                 <button
+                  id="confirmDelete"
                   (click)="confirmDelete(todo)"
                   mat-icon-button
                   aria-label="Delete todo element">
