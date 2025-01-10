@@ -4,10 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="e6676a23-a5ef-4dd3-a62a-5345dc2974d0" name="Changes" comment="basic unit and integration test">
+    <list default="true" id="e6676a23-a5ef-4dd3-a62a-5345dc2974d0" name="Changes" comment="minor fixes">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/todo-app/src/app/common/confirmation-modal/confirmation-modal.component.spec.ts" beforeDir="false" afterPath="$PROJECT_DIR$/todo-app/src/app/common/confirmation-modal/confirmation-modal.component.spec.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/todo-app/src/app/pages/list/list.component.spec.ts" beforeDir="false" afterPath="$PROJECT_DIR$/todo-app/src/app/pages/list/list.component.spec.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/todo-app/src/app/app.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/todo-app/src/app/app.component.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/todo-app/src/app/pages/todo-element/todo-element.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/todo-app/src/app/pages/todo-element/todo-element.component.html" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -86,7 +86,7 @@
       <recent name="$PROJECT_DIR$/todo-app/src/app/pages" />
     </key>
   </component>
-  <component name="RunManager" selected="Karma.ListComponent.should toggle the done state of a todo">
+  <component name="RunManager" selected="npm.start">
     <configuration name="ListComponent.should toggle the done state of a todo" type="JavaScriptTestRunnerKarma" temporary="true" nameIsGenerated="true">
       <config-file value="" />
       <karma-package-dir value="$PROJECT_DIR$/todo-app/node_modules/@angular/cli" />
@@ -113,8 +113,8 @@
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="Karma.ListComponent.should toggle the done state of a todo" />
         <item itemvalue="npm.start" />
+        <item itemvalue="Karma.ListComponent.should toggle the done state of a todo" />
       </list>
     </recent_temporary>
   </component>
@@ -136,7 +136,7 @@
       <workItem from="1736329850001" duration="1849000" />
       <workItem from="1736343297920" duration="12147000" />
       <workItem from="1736413800455" duration="93000" />
-      <workItem from="1736413963677" duration="48104000" />
+      <workItem from="1736413963677" duration="48616000" />
     </task>
     <task id="LOCAL-00001" summary="Working example of todo list">
       <option name="closed" value="true" />
@@ -162,7 +162,15 @@
       <option name="project" value="LOCAL" />
       <updated>1736517146843</updated>
     </task>
-    <option name="localTasksCounter" value="4" />
+    <task id="LOCAL-00004" summary="minor fixes">
+      <option name="closed" value="true" />
+      <created>1736532252024</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1736532252024</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -185,7 +193,8 @@
     <MESSAGE value="Working example of todo list" />
     <MESSAGE value="deleted unused vscode ext" />
     <MESSAGE value="basic unit and integration test" />
-    <option name="LAST_COMMIT_MESSAGE" value="basic unit and integration test" />
+    <MESSAGE value="minor fixes" />
+    <option name="LAST_COMMIT_MESSAGE" value="minor fixes" />
     <option name="OPTIMIZE_IMPORTS_BEFORE_PROJECT_COMMIT" value="true" />
     <option name="REFORMAT_BEFORE_PROJECT_COMMIT" value="true" />
   </component>
