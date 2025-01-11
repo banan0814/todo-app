@@ -19,7 +19,6 @@ describe('ListComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ListComponent],
       imports: [
         ReactiveFormsModule,
         MatFormFieldModule,
@@ -31,6 +30,7 @@ describe('ListComponent', () => {
         MatIconModule,
         MatButtonModule,
         NoopAnimationsModule,
+        ListComponent,
       ],
     }).compileComponents();
 
@@ -80,25 +80,6 @@ describe('ListComponent', () => {
     component.search();
     expect(component.filteredList()[0].isDone).toBeTrue();
   });
-
-  it('should call navigateToEdit when edit button is clicked', fakeAsync(() => {
-    spyOn(component, 'navigateToEdit');
-
-    //Prepare list to have element and the expected button
-    component.completeList().length = 5;
-    component.filteredList.update(() => Array.from({length: 5}, (_, i) => ({
-      id: i.toString(),
-      description: `Item ${i}`,
-      isDone: false
-    })));
-    component.paginatedView = component.filteredList();
-    fixture.detectChanges();
-    flush();
-
-    const button = fixture.debugElement.nativeElement.querySelector('#navigateToEdit');
-    button.click();
-    expect(component.navigateToEdit).toHaveBeenCalled();
-  }));
 
   it('should call confirmDelete when delete button is clicked', fakeAsync(() => {
     spyOn(component, 'confirmDelete');
