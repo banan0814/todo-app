@@ -4,31 +4,67 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="e6676a23-a5ef-4dd3-a62a-5345dc2974d0" name="Changes" comment="minor fixes">
+    <list default="true" id="e6676a23-a5ef-4dd3-a62a-5345dc2974d0" name="Changes" comment="minor bugix and simplified version of the app added">
+      <change afterPath="$PROJECT_DIR$/todo-app-simplified/.editorconfig" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/todo-app-simplified/.gitignore" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/todo-app-simplified/.vscode/extensions.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/todo-app-simplified/.vscode/launch.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/todo-app-simplified/.vscode/tasks.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/todo-app-simplified/README.md" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/todo-app-simplified/angular.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/todo-app-simplified/package-lock.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/todo-app-simplified/package.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/todo-app-simplified/public/favicon.ico" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/todo-app-simplified/src/app/common/confirmation-modal/confirmation-modal.component.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/todo-app-simplified/src/app/common/confirmation-modal/confirmation-modal.component.scss" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/todo-app-simplified/src/app/common/confirmation-modal/confirmation-modal.component.spec.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/todo-app-simplified/src/app/common/confirmation-modal/confirmation-modal.component.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/todo-app-simplified/src/app/common/todo-edit-modal/todo-edit-modal.component.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/todo-app-simplified/src/app/common/todo-edit-modal/todo-edit-modal.component.scss" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/todo-app-simplified/src/app/common/todo-edit-modal/todo-edit-modal.component.spec.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/todo-app-simplified/src/app/common/todo-edit-modal/todo-edit-modal.component.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/todo-app-simplified/src/app/models/confirmation-dialog-data.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/todo-app-simplified/src/app/models/todo-model.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/todo-app-simplified/src/app/pages/list/list.component.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/todo-app-simplified/src/app/pages/list/list.component.scss" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/todo-app-simplified/src/app/pages/list/list.component.spec.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/todo-app-simplified/src/app/pages/list/list.component.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/todo-app-simplified/src/app/services/backend-services/todo-be-service.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/todo-app-simplified/src/app/services/todo-service.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/todo-app-simplified/src/index.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/todo-app-simplified/src/main.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/todo-app-simplified/src/styles.scss" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/todo-app-simplified/tsconfig.app.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/todo-app-simplified/tsconfig.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/todo-app-simplified/tsconfig.spec.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/todo-app/src/app/app.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/todo-app/src/app/app.component.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/todo-app/src/app/pages/todo-element/todo-element.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/todo-app/src/app/pages/todo-element/todo-element.component.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/todo-app/src/app/pages/list/list.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/todo-app/src/app/pages/list/list.component.ts" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
+  <component name="ChangesViewManager">
+    <option name="groupingKeys">
+      <option value="directory" />
+    </option>
+  </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
-  <component name="GitHubPullRequestSearchHistory"><![CDATA[{
-  "lastFilter": {
-    "state": "OPEN",
-    "assignee": "banan0814"
+  <component name="GitHubPullRequestSearchHistory">{
+  &quot;lastFilter&quot;: {
+    &quot;state&quot;: &quot;OPEN&quot;,
+    &quot;assignee&quot;: &quot;banan0814&quot;
   }
-}]]></component>
-  <component name="GithubPullRequestsUISettings"><![CDATA[{
-  "selectedUrlAndAccountId": {
-    "url": "https://github.com/banan0814/todo-app.git",
-    "accountId": "56eddb64-a941-4c17-a89b-1b6493ac2200"
+}</component>
+  <component name="GithubPullRequestsUISettings">{
+  &quot;selectedUrlAndAccountId&quot;: {
+    &quot;url&quot;: &quot;https://github.com/banan0814/todo-app.git&quot;,
+    &quot;accountId&quot;: &quot;56eddb64-a941-4c17-a89b-1b6493ac2200&quot;
   }
-}]]></component>
+}</component>
   <component name="HighlightingSettingsPerFile">
     <setting file="file://$PROJECT_DIR$/todo-app/node_modules/@angular/material/select/index.d.ts" root0="SKIP_INSPECTION" />
   </component>
@@ -45,9 +81,9 @@
   <component name="ProblemsViewState">
     <option name="selectedTabId" value="CurrentFile" />
   </component>
-  <component name="ProjectColorInfo"><![CDATA[{
-  "associatedIndex": 1
-}]]></component>
+  <component name="ProjectColorInfo">{
+  &quot;associatedIndex&quot;: 1
+}</component>
   <component name="ProjectId" id="2rLEF9Lt4DepWBZNsCdcHpgS4TB" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
@@ -61,7 +97,7 @@
     "RunOnceActivity.git.unshallow": "true",
     "WebServerToolWindowFactoryState": "false",
     "git-widget-placeholder": "main",
-    "last_opened_file_path": "/Users/Innovitech1/Git/todo-app/todo-app",
+    "last_opened_file_path": "/Users/Innovitech1/Git/todo-app/todo-app-simplified/src/app",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.standard": "true",
     "node.js.detected.package.stylelint": "true",
@@ -71,15 +107,17 @@
     "node.js.selected.package.stylelint": "",
     "node.js.selected.package.tslint": "(autodetect)",
     "nodejs_package_manager_path": "npm",
+    "npm.start simplified.executor": "Run",
     "npm.start.executor": "Run",
     "run.code.analysis.last.selected.profile": "pProject Default",
     "settings.editor.selected.configurable": "Settings.JavaScript",
-    "ts.external.directory.path": "/Users/Innovitech1/Git/todo-app/todo-app/node_modules/typescript/lib",
+    "ts.external.directory.path": "/Users/Innovitech1/Git/todo-app/todo-app-simplified/node_modules/typescript/lib",
     "vue.rearranger.settings.migration": "true"
   }
 }]]></component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/todo-app-simplified/src/app" />
       <recent name="$PROJECT_DIR$/todo-app" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
@@ -99,6 +137,16 @@
         <test-name value="ListComponent" />
         <test-name value="should toggle the done state of a todo" />
       </test-names>
+      <method v="2" />
+    </configuration>
+    <configuration name="start simplified" type="js.build_tools.npm">
+      <package-json value="$PROJECT_DIR$/todo-app-simplified/package.json" />
+      <command value="run" />
+      <scripts>
+        <script value="start" />
+      </scripts>
+      <node-interpreter value="project" />
+      <envs />
       <method v="2" />
     </configuration>
     <configuration name="start" type="js.build_tools.npm" temporary="true" nameIsGenerated="true">
@@ -136,7 +184,8 @@
       <workItem from="1736329850001" duration="1849000" />
       <workItem from="1736343297920" duration="12147000" />
       <workItem from="1736413800455" duration="93000" />
-      <workItem from="1736413963677" duration="48616000" />
+      <workItem from="1736413963677" duration="49288000" />
+      <workItem from="1736601702412" duration="7611000" />
     </task>
     <task id="LOCAL-00001" summary="Working example of todo list">
       <option name="closed" value="true" />
@@ -170,7 +219,15 @@
       <option name="project" value="LOCAL" />
       <updated>1736532252024</updated>
     </task>
-    <option name="localTasksCounter" value="5" />
+    <task id="LOCAL-00005" summary="language fixes">
+      <option name="closed" value="true" />
+      <created>1736532554358</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1736532554358</updated>
+    </task>
+    <option name="localTasksCounter" value="6" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -194,7 +251,9 @@
     <MESSAGE value="deleted unused vscode ext" />
     <MESSAGE value="basic unit and integration test" />
     <MESSAGE value="minor fixes" />
-    <option name="LAST_COMMIT_MESSAGE" value="minor fixes" />
+    <MESSAGE value="language fixes" />
+    <MESSAGE value="minor bugix and simplified version of the app added" />
+    <option name="LAST_COMMIT_MESSAGE" value="minor bugix and simplified version of the app added" />
     <option name="OPTIMIZE_IMPORTS_BEFORE_PROJECT_COMMIT" value="true" />
     <option name="REFORMAT_BEFORE_PROJECT_COMMIT" value="true" />
   </component>

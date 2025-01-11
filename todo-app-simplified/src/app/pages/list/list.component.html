@@ -1,0 +1,79 @@
+<div class="page-container">
+  <mat-toolbar class="toolbar">
+    <h1>Todo App</h1>
+    <button
+      class="new-button"
+      mat-fab
+      extended
+      aria-label="Add new"
+      (click)="addOrEditNew()">
+      <mat-icon>add</mat-icon>
+      Új hozzáadása
+    </button>
+  </mat-toolbar>
+  <div class="flex-row search-bar">
+    <mat-form-field class="full-width">
+      <mat-label>Válassz a státuszok körül a lista szűkítéséhez</mat-label>
+      <mat-select
+        canSelectNullableOptions
+        [formControl]="listElementState"
+        (selectionChange)="search()">
+        @for (option of selectOptions; track option) {
+          <mat-option [value]="option.value">{{ option.viewValue }}</mat-option>
+        }
+      </mat-select>
+    </mat-form-field>
+    <mat-form-field class="full-width">
+      <mat-label>Keresés leírás alapján</mat-label>
+      <input matInput placeholder="Leírás" [formControl]="listElementDescription">
+    </mat-form-field>
+  </div>
+  <div class="table-container">
+    @if (completeList().length) {
+      <mat-paginator
+        (page)="handlePageEvent($event)"
+        [length]="filteredList().length"
+        [pageSize]="pageSize"
+        [showFirstLastButtons]="true"
+        [pageSizeOptions]=" [5, 10, 25]"
+        [pageIndex]="pageIndex"
+        aria-label="Select page">
+      </mat-paginator>
+    }
+    <div class="flex-col">
+      @for (todo of paginatedView; track todo.id) {
+        <mat-card appearance="outlined">
+          <mat-card-content>
+            <div class="flex-row">
+              <div>
+                <mat-slide-toggle
+                  [checked]="todo.isDone"
+                  (change)="updateTodoDoneState(todo, $event)">
+                </mat-slide-toggle>
+              </div>
+              <div class="full-width">
+                {{ todo.description }}
+              </div>
+              <div class="flex-row">
+                <button
+                  id="navigateToEdit"
+                  (click)="addOrEditNew(todo)"
+                  mat-icon-button
+                  aria-label="Edit todo element">
+                  <mat-icon>edit</mat-icon>
+                </button>
+                <button
+                  id="confirmDelete"
+                  (click)="confirmDelete(todo)"
+                  mat-icon-button
+                  aria-label="Delete todo element">
+                  <mat-icon>delete</mat-icon>
+                </button>
+              </div>
+            </div>
+          </mat-card-content>
+        </mat-card>
+      }
+    </div>
+  </div>
+</div>

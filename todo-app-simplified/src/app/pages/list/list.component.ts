@@ -1,22 +1,45 @@
-import { Component, inject, OnInit, signal } from '@angular/core';
-import { FormControl } from '@angular/forms';
-import { NavigationExtras, Router } from '@angular/router';
-import { MatSlideToggleChange } from '@angular/material/slide-toggle';
-import { MatDialog } from '@angular/material/dialog';
-import { PageEvent } from '@angular/material/paginator';
-import { Todo } from '../../models/todo-model';
-import { ConfirmationModalComponent } from '../../common/confirmation-modal/confirmation-modal.component';
+import { Component, inject, OnInit, signal } from "@angular/core";
+import { MatFormField, MatLabel } from '@angular/material/form-field';
 import { TodoService } from '../../services/todo-service';
+import { MatDialog } from '@angular/material/dialog';
+import { Todo } from '../../models/todo-model';
+import { FormControl, ReactiveFormsModule } from '@angular/forms';
+import { MatSlideToggle, MatSlideToggleChange } from '@angular/material/slide-toggle';
+import { ConfirmationModalComponent } from '../../common/confirmation-modal/confirmation-modal.component';
+import { MatPaginator, PageEvent } from '@angular/material/paginator';
+import { MatOption, MatSelect } from '@angular/material/select';
+import { MatCard, MatCardContent } from '@angular/material/card';
+import { MatIcon } from '@angular/material/icon';
+import { MatInputModule } from '@angular/material/input';
+import { MatFabButton, MatIconButton } from '@angular/material/button';
+import { TodoEditModalComponent } from '../../common/todo-edit-modal/todo-edit-modal.component';
+import { MatToolbar } from '@angular/material/toolbar';
 
 @Component({
   selector: 'app-list',
-  standalone: false,
+  standalone: true,
   templateUrl: './list.component.html',
+  imports: [
+    MatFormField,
+    MatSelect,
+    MatInputModule,
+    MatOption,
+    MatCard,
+    MatCardContent,
+    MatSlideToggle,
+    MatIcon,
+    MatPaginator,
+    MatLabel,
+    MatIcon,
+    MatIconButton,
+    MatFabButton,
+    MatToolbar,
+    ReactiveFormsModule
+  ],
   styleUrl: './list.component.scss'
 })
 export class ListComponent implements OnInit {
   private todoListService = inject(TodoService);
-  private router = inject(Router);
   private readonly dialog = inject(MatDialog);
   private _pageIndex: number = 0;
   private _pageSize: number = 10;
@@ -59,6 +82,28 @@ export class ListComponent implements OnInit {
     return this.filteredList().slice(this.startIndex, this.endIndex)
   }
 
+  private updateLists(): void {
+    this.filteredList.update(() => this.completeList())
+    this.paginatedView = this.paginateListData();
+  }
+
+  private blurActiveButton(): void {
+    const buttonElement = document.activeElement as HTMLElement;
+    buttonElement.blur();
+  }
+
+  public addOrEditNew(todo?: Todo) {
+    this.blurActiveButton();
+    const dialogRef = this.dialog.open(TodoEditModalComponent, {
+      data: todo,
+    });
+
+    dialogRef.afterClosed().subscribe((): void => {
+      this.updateLists();
+    });
+  }
+
+
   //Update element state
   public updateTodoDoneState(todo: Todo, isChecked: MatSlideToggleChange): void {
     this.todoListService.updateTodoListElement({
@@ -71,12 +116,8 @@ export class ListComponent implements OnInit {
 
   // Call confirmation modal for delete
   public confirmDelete(todo: Todo) {
+    this.blurActiveButton();
     const confirm = signal(true);
-    // The following two lines are here because of an angular known issue https://github.com/angular/components/issues/30187
-    // seems related to how aria-hidden is applied to the background content while the dialog is active
-    const buttonElement = document.activeElement as HTMLElement;
-    buttonElement.blur();
-
     const dialogRef = this.dialog.open(ConfirmationModalComponent, {
       data: {
         title: 'Elem törlése',
@@ -88,14 +129,9 @@ export class ListComponent implements OnInit {
     dialogRef.afterClosed().subscribe((result: any): void => {
       if (result) {
         this.deleteElement(todo);
+        this.updateLists();
       }
     });
-  }
-
-  //Edit element by using the todo-element component
-  public navigateToEdit(todo: Todo): void {
-    const navigationExtras: NavigationExtras = {state: {data: todo}};
-    this.router.navigate(['/todo-edit'], navigationExtras);
   }
 
   //Search by Description and by State the filters can apply azt he same time.
