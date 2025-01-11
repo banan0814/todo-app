@@ -10,6 +10,7 @@ import { TodoService } from '../../services/todo-service';
 
 @Component({
   selector: 'app-todo-edit-modal',
+  standalone: true,
   imports: [
     MatButton,
     MatError,

@@ -8,8 +8,7 @@ describe('ConfirmationModalComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ConfirmationModalComponent],
-      imports: [BrowserAnimationsModule, MatDialogModule],
+      imports: [BrowserAnimationsModule, MatDialogModule, ConfirmationModalComponent],
       providers: [
         {provide: MAT_DIALOG_DATA, useValue: {title: 'Confirm', description: 'Test description'}},
         {provide: MatDialogRef, useValue: jasmine.createSpyObj('MatDialogRef', ['close'])}
