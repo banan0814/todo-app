@@ -4,41 +4,12 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="e6676a23-a5ef-4dd3-a62a-5345dc2974d0" name="Changes" comment="minor bugix and simplified version of the app added">
-      <change afterPath="$PROJECT_DIR$/todo-app-simplified/.editorconfig" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/todo-app-simplified/.gitignore" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/todo-app-simplified/.vscode/extensions.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/todo-app-simplified/.vscode/launch.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/todo-app-simplified/.vscode/tasks.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/todo-app-simplified/README.md" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/todo-app-simplified/angular.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/todo-app-simplified/package-lock.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/todo-app-simplified/package.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/todo-app-simplified/public/favicon.ico" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/todo-app-simplified/src/app/common/confirmation-modal/confirmation-modal.component.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/todo-app-simplified/src/app/common/confirmation-modal/confirmation-modal.component.scss" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/todo-app-simplified/src/app/common/confirmation-modal/confirmation-modal.component.spec.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/todo-app-simplified/src/app/common/confirmation-modal/confirmation-modal.component.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/todo-app-simplified/src/app/common/todo-edit-modal/todo-edit-modal.component.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/todo-app-simplified/src/app/common/todo-edit-modal/todo-edit-modal.component.scss" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/todo-app-simplified/src/app/common/todo-edit-modal/todo-edit-modal.component.spec.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/todo-app-simplified/src/app/common/todo-edit-modal/todo-edit-modal.component.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/todo-app-simplified/src/app/models/confirmation-dialog-data.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/todo-app-simplified/src/app/models/todo-model.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/todo-app-simplified/src/app/pages/list/list.component.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/todo-app-simplified/src/app/pages/list/list.component.scss" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/todo-app-simplified/src/app/pages/list/list.component.spec.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/todo-app-simplified/src/app/pages/list/list.component.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/todo-app-simplified/src/app/services/backend-services/todo-be-service.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/todo-app-simplified/src/app/services/todo-service.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/todo-app-simplified/src/index.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/todo-app-simplified/src/main.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/todo-app-simplified/src/styles.scss" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/todo-app-simplified/tsconfig.app.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/todo-app-simplified/tsconfig.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/todo-app-simplified/tsconfig.spec.json" afterDir="false" />
+    <list default="true" id="e6676a23-a5ef-4dd3-a62a-5345dc2974d0" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/todo-app/src/app/pages/list/list.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/todo-app/src/app/pages/list/list.component.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/todo-app-simplified/src/app/pages/list/list.component.spec.ts" beforeDir="false" afterPath="$PROJECT_DIR$/todo-app-simplified/src/app/pages/list/list.component.spec.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/todo-app/src/app/app.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/todo-app/src/app/app.component.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/todo-app/src/app/app.component.spec.ts" beforeDir="false" afterPath="$PROJECT_DIR$/todo-app/src/app/app.component.spec.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/todo-app/src/app/pages/list/list.component.spec.ts" beforeDir="false" afterPath="$PROJECT_DIR$/todo-app/src/app/pages/list/list.component.spec.ts" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -89,32 +60,33 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "Karma.ListComponent.should toggle the done state of a todo.executor": "Run",
-    "RunOnceActivity.OpenProjectViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "RunOnceActivity.git.unshallow": "true",
-    "WebServerToolWindowFactoryState": "false",
-    "git-widget-placeholder": "main",
-    "last_opened_file_path": "/Users/Innovitech1/Git/todo-app/todo-app-simplified/src/app",
-    "node.js.detected.package.eslint": "true",
-    "node.js.detected.package.standard": "true",
-    "node.js.detected.package.stylelint": "true",
-    "node.js.detected.package.tslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.standard": "",
-    "node.js.selected.package.stylelint": "",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "nodejs_package_manager_path": "npm",
-    "npm.start simplified.executor": "Run",
-    "npm.start.executor": "Run",
-    "run.code.analysis.last.selected.profile": "pProject Default",
-    "settings.editor.selected.configurable": "Settings.JavaScript",
-    "ts.external.directory.path": "/Users/Innovitech1/Git/todo-app/todo-app-simplified/node_modules/typescript/lib",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;Karma.ListComponent.should toggle the done state of a todo.executor&quot;: &quot;Run&quot;,
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
+    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
+    &quot;last_opened_file_path&quot;: &quot;/Users/Innovitech1/Git/todo-app/todo-app-simplified/src/app&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.standard&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.stylelint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.standard&quot;: &quot;&quot;,
+    &quot;node.js.selected.package.stylelint&quot;: &quot;&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;npm.dev.executor&quot;: &quot;Run&quot;,
+    &quot;npm.start simplified.executor&quot;: &quot;Run&quot;,
+    &quot;npm.start.executor&quot;: &quot;Run&quot;,
+    &quot;run.code.analysis.last.selected.profile&quot;: &quot;pProject Default&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;Settings.JavaScript&quot;,
+    &quot;ts.external.directory.path&quot;: &quot;/Users/Innovitech1/Git/todo-app/todo-app/node_modules/typescript/lib&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$/todo-app-simplified/src/app" />
@@ -124,7 +96,7 @@
       <recent name="$PROJECT_DIR$/todo-app/src/app/pages" />
     </key>
   </component>
-  <component name="RunManager" selected="npm.start">
+  <component name="RunManager" selected="npm.start simplified">
     <configuration name="ListComponent.should toggle the done state of a todo" type="JavaScriptTestRunnerKarma" temporary="true" nameIsGenerated="true">
       <config-file value="" />
       <karma-package-dir value="$PROJECT_DIR$/todo-app/node_modules/@angular/cli" />
@@ -137,6 +109,16 @@
         <test-name value="ListComponent" />
         <test-name value="should toggle the done state of a todo" />
       </test-names>
+      <method v="2" />
+    </configuration>
+    <configuration name="dev" type="js.build_tools.npm" temporary="true" nameIsGenerated="true">
+      <package-json value="$PROJECT_DIR$/todo-app-simplified/package.json" />
+      <command value="run" />
+      <scripts>
+        <script value="dev" />
+      </scripts>
+      <node-interpreter value="project" />
+      <envs />
       <method v="2" />
     </configuration>
     <configuration name="start simplified" type="js.build_tools.npm">
@@ -162,6 +144,7 @@
     <recent_temporary>
       <list>
         <item itemvalue="npm.start" />
+        <item itemvalue="npm.dev" />
         <item itemvalue="Karma.ListComponent.should toggle the done state of a todo" />
       </list>
     </recent_temporary>
@@ -186,6 +169,8 @@
       <workItem from="1736413800455" duration="93000" />
       <workItem from="1736413963677" duration="49288000" />
       <workItem from="1736601702412" duration="7611000" />
+      <workItem from="1736688144909" duration="3350000" />
+      <workItem from="1736712750570" duration="825000" />
     </task>
     <task id="LOCAL-00001" summary="Working example of todo list">
       <option name="closed" value="true" />

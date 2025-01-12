@@ -41,7 +41,7 @@ describe('AppComponent', () => {
     const sidenav = fixture.debugElement.query(By.css('mat-sidenav')).componentInstance;
     const toggleSpy = spyOn(sidenav, 'toggle');
 
-    const menuButton = fixture.debugElement.query(By.css('[aria-label=\"Menu button\"]')).nativeElement;
+    const menuButton = fixture.debugElement.query(By.css('[id=\"menu-button\"]')).nativeElement;
     menuButton.click();
 
     expect(toggleSpy).toHaveBeenCalled();
