@@ -18,7 +18,7 @@
   </div>
   @if (completeList().length) {
     <div class="flex-col">
-      @for (todo of paginatedView; track todo.id) {
+      @for (todo of paginatedView(); track todo.id) {
         <mat-card appearance="outlined">
           <mat-card-content>
             <div class="flex-row">
@@ -34,16 +34,16 @@
               <div class="flex-row">
                 <button
                   id="navigateToEdit"
-                  (click)="navigateToEdit(todo)"
                   mat-icon-button
-                  aria-label="Edit todo element">
+                  aria-label="Edit todo element"
+                  (click)="navigateToEdit(todo)">
                   <mat-icon>edit</mat-icon>
                 </button>
                 <button
                   id="confirmDelete"
-                  (click)="confirmDelete(todo)"
                   mat-icon-button
-                  aria-label="Delete todo element">
+                  aria-label="Delete todo element"
+                  (click)="confirmDelete(todo)">
                   <mat-icon>delete</mat-icon>
                 </button>
               </div>
@@ -52,15 +52,19 @@
         </mat-card>
       }
     </div>
-    <mat-paginator
-      (page)="handlePageEvent($event)"
-      [length]="filteredList().length"
-      [pageSize]="pageSize"
-      [showFirstLastButtons]="true"
-      [pageSizeOptions]=" [5, 10, 25]"
-      [pageIndex]="pageIndex"
-      aria-label="Select page">
-    </mat-paginator>
+    <div class="flex-row paginator-row">
+      <p> Teljes lista összes eleme: {{ completeList().length }} db</p>
+      <mat-paginator
+        class="full-width"
+        aria-label="Select page"
+        [length]="filteredList().length"
+        [pageSize]="pageSize"
+        [showFirstLastButtons]="true"
+        [pageSizeOptions]=" [5, 10, 25]"
+        [pageIndex]="pageIndex"
+        (page)="handlePageEvent($event)">
+      </mat-paginator>
+    </div>
   } @else {
     <p>A lista üres</p>
   }

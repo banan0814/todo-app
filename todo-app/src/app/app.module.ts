@@ -20,7 +20,8 @@ import { MatSidenav, MatSidenavContainer, MatSidenavContent } from '@angular/mat
 import { MatInput } from '@angular/material/input';
 import { MatOption, MatSelect } from '@angular/material/select';
 import { MatDialogActions, MatDialogClose, MatDialogContent, MatDialogTitle } from '@angular/material/dialog';
-import { MatPaginator } from '@angular/material/paginator';
+import { MatPaginator, MatPaginatorIntl } from '@angular/material/paginator';
+import { getHungarianPaginatorIntl } from './common/hungarian-paginator-intl';
 
 @NgModule({
   declarations: [
@@ -56,7 +57,8 @@ import { MatPaginator } from '@angular/material/paginator';
     ReactiveFormsModule,
   ],
   providers: [
-    provideAnimationsAsync()
+    provideAnimationsAsync(),
+    {provide: MatPaginatorIntl, useValue: getHungarianPaginatorIntl()}
   ],
   bootstrap: [AppComponent]
 })

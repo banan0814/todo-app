@@ -41,7 +41,9 @@ export class TodoEditModalComponent implements OnInit {
     }
   }
 
-  // Submit form and save new or edited data and reset data to default state
+  /**
+   * Submit form and save new or edited data and reset data to default state
+   */
   public onSubmit(): void {
     const formValue = this.todoItemFrom.value;
     if (this.data) {

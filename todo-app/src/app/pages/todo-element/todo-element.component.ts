@@ -5,7 +5,6 @@ import { TodoService } from '../../services/todo-service';
 import { Todo } from '../../models/todo-model';
 import { Router } from '@angular/router';
 
-// @ts-ignore
 @Component({
   selector: 'app-todo-element',
   standalone: false,
@@ -32,7 +31,10 @@ export class TodoElementComponent implements OnInit {
   }
 
 
-  // Submit form and save new or edited data and reset data to default state
+  /**
+   * Submit form and save new or edited data and reset data to default state
+   * @param formDirective
+   */
   public onSubmit(formDirective: FormGroupDirective): void {
     const formValue = this.todoItemFrom.value;
     if (this.isEditByNavigation) {
@@ -43,5 +45,4 @@ export class TodoElementComponent implements OnInit {
       formDirective.resetForm({id: uuid.v4()});
     }
   }
-
 }

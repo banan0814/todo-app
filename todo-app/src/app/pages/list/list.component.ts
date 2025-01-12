@@ -25,7 +25,7 @@ export class ListComponent implements OnInit {
 
   public completeList = this.todoListService.todoList;
   public filteredList = signal<Todo[]>(this.completeList());
-  public paginatedView: Todo[] = this.paginateListData();
+  public paginatedView = signal<Todo[]>(this.filteredList());
   public listElementState: FormControl<boolean | null> = new FormControl(null);
   public listElementDescription: FormControl<string | null> = new FormControl('');
   public selectOptions: { value: boolean | null, viewValue: string }[] = [
@@ -46,20 +46,31 @@ export class ListComponent implements OnInit {
     this.listElementDescription.valueChanges.subscribe(() => this.search());
   }
 
-  // Delete element and update search list if needed
+  /**
+   * Delete element and update search list if needed
+   * @param todo
+   * @private
+   */
   private deleteElement(todo: Todo) {
     this.todoListService.deleteFromTodoList(todo);
     this.search();
   }
 
-  // Slice up list to paginate
-  private paginateListData(): Todo[] {
+  /**
+   * Slice up list to paginate
+   * @private
+   */
+  private paginateListData(): void {
     this.startIndex = ((this._pageIndex + 1) * this._pageSize) - this._pageSize;
     this.endIndex = ((this._pageIndex + 1) * this._pageSize);
-    return this.filteredList().slice(this.startIndex, this.endIndex)
+    this.paginatedView.update(() => this.filteredList().slice(this.startIndex, this.endIndex));
   }
 
-  //Update element state
+  /**
+   * Update element state
+   * @param todo
+   * @param isChecked
+   */
   public updateTodoDoneState(todo: Todo, isChecked: MatSlideToggleChange): void {
     this.todoListService.updateTodoListElement({
       description: todo.description,
@@ -69,11 +80,16 @@ export class ListComponent implements OnInit {
     this.search();
   }
 
-  // Call confirmation modal for delete
+  /**
+   * Call confirmation modal for delete
+   * @param todo
+   */
   public confirmDelete(todo: Todo) {
     const confirm = signal(true);
-    // The following two lines are here because of an angular known issue https://github.com/angular/components/issues/30187
-    // seems related to how aria-hidden is applied to the background content while the dialog is active
+    /*
+    The following two lines are here because of an angular known issue https://github.com/angular/components/issues/30187
+    seems related to how aria-hidden is applied to the background content while the dialog is active
+     */
     const buttonElement = document.activeElement as HTMLElement;
     buttonElement.blur();
 
@@ -92,14 +108,19 @@ export class ListComponent implements OnInit {
     });
   }
 
-  //Edit element by using the todo-element component
+  /**
+   * Edit element by using the todo-element component
+   * @param todo
+   */
   public navigateToEdit(todo: Todo): void {
     const navigationExtras: NavigationExtras = {state: {data: todo}};
     this.router.navigate(['/todo-edit'], navigationExtras);
   }
 
-  //Search by Description and by State the filters can apply azt he same time.
-  // Update pagination if needed
+  /**
+   * Search by Description and by State the filters can apply azt he same time.
+   * Update pagination if needed
+   */
   public search(): void {
     const searchByDescription =
       (item: Todo): boolean => item.description.includes(this.listElementDescription.value!);
@@ -127,13 +148,17 @@ export class ListComponent implements OnInit {
         length: this.filteredList().length
       })
     } else {
-      this.paginatedView = this.paginateListData();
+      this.paginateListData();
     }
   }
 
+  /**
+   * Page event handler method, updated page index and size and call paginate
+   * @param event
+   */
   public handlePageEvent(event: PageEvent): void {
     this._pageSize = event.pageSize;
     this._pageIndex = event.pageIndex;
-    this.paginatedView = this.paginateListData();
+    this.paginateListData();
   }
 }

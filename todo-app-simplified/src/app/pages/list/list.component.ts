@@ -48,7 +48,7 @@ export class ListComponent implements OnInit {
 
   public completeList = this.todoListService.todoList;
   public filteredList = signal<Todo[]>(this.completeList());
-  public paginatedView: Todo[] = this.paginateListData();
+  public paginatedView = signal<Todo[]>(this.filteredList());
   public listElementState: FormControl<boolean | null> = new FormControl(null);
   public listElementDescription: FormControl<string | null> = new FormControl('');
   public selectOptions: { value: boolean | null, viewValue: string }[] = [
@@ -69,29 +69,48 @@ export class ListComponent implements OnInit {
     this.listElementDescription.valueChanges.subscribe(() => this.search());
   }
 
-  // Delete element and update search list if needed
+  /**
+   * Delete element and update search list if needed
+   * @param todo
+   * @private
+   */
   private deleteElement(todo: Todo) {
     this.todoListService.deleteFromTodoList(todo);
     this.search();
   }
 
-  // Slice up list to paginate
-  private paginateListData(): Todo[] {
+  /**
+   * Slice up list to paginate
+   * @private
+   */
+  private paginateListData(): void {
     this.startIndex = ((this._pageIndex + 1) * this._pageSize) - this._pageSize;
     this.endIndex = ((this._pageIndex + 1) * this._pageSize);
-    return this.filteredList().slice(this.startIndex, this.endIndex)
+    this.paginatedView.update(() => this.filteredList().slice(this.startIndex, this.endIndex));
   }
 
+  /**
+   * Updates the filtered and paginated list (called after delete or new element add effect)
+   * @private
+   */
   private updateLists(): void {
-    this.filteredList.update(() => this.completeList())
-    this.paginatedView = this.paginateListData();
+    this.filteredList.update(() => this.completeList());
+    this.paginateListData();
   }
 
+  /**
+   * Known angular console error focus bug fix on modal call
+   * @private
+   */
   private blurActiveButton(): void {
     const buttonElement = document.activeElement as HTMLElement;
     buttonElement.blur();
   }
 
+  /**
+   * Add or Edit Todo item dialog call
+   * @param todo
+   */
   public addOrEditNew(todo?: Todo) {
     this.blurActiveButton();
     const dialogRef = this.dialog.open(TodoEditModalComponent, {
@@ -104,7 +123,11 @@ export class ListComponent implements OnInit {
   }
 
 
-  //Update element state
+  /**
+   * Update element state
+   * @param todo
+   * @param isChecked
+   */
   public updateTodoDoneState(todo: Todo, isChecked: MatSlideToggleChange): void {
     this.todoListService.updateTodoListElement({
       description: todo.description,
@@ -114,7 +137,10 @@ export class ListComponent implements OnInit {
     this.search();
   }
 
-  // Call confirmation modal for delete
+  /**
+   * Call confirmation modal for delete
+   * @param todo
+   */
   public confirmDelete(todo: Todo) {
     this.blurActiveButton();
     const confirm = signal(true);
@@ -134,8 +160,10 @@ export class ListComponent implements OnInit {
     });
   }
 
-  //Search by Description and by State the filters can apply azt he same time.
-  // Update pagination if needed
+  /**
+   * Search by Description and by State the filters can apply azt he same time.
+   *  Update pagination if needed
+   */
   public search(): void {
     const searchByDescription =
       (item: Todo): boolean => item.description.includes(this.listElementDescription.value!);
@@ -163,13 +191,17 @@ export class ListComponent implements OnInit {
         length: this.filteredList().length
       })
     } else {
-      this.paginatedView = this.paginateListData();
+      this.paginateListData();
     }
   }
 
+  /**
+   * Handles page event, updates page index and size and re paginate list
+   * @param event
+   */
   public handlePageEvent(event: PageEvent): void {
     this._pageSize = event.pageSize;
     this._pageIndex = event.pageIndex;
-    this.paginatedView = this.paginateListData();
+    this.paginateListData();
   }
 }
