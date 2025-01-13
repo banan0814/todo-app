@@ -52,7 +52,7 @@ export class ListComponent implements OnInit, OnDestroy {
 
   public completeList = this.todoListService.todoList;
   public filteredList = signal<Todo[]>(this.completeList());
-  public paginatedView = signal<Todo[]>(this.filteredList());
+  public paginatedView = signal<Todo[]>(this.filteredList().slice(this.startIndex, this.endIndex));
   public listElementState: FormControl<boolean | null> = new FormControl(null);
   public listElementDescription: FormControl<string | null> = new FormControl('');
   public selectOptions: { value: boolean | null, viewValue: string }[] = [
