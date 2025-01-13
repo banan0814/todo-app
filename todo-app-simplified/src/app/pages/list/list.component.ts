@@ -1,4 +1,4 @@
-import { Component, inject, OnInit, signal } from "@angular/core";
+import { Component, inject, OnDestroy, OnInit, signal } from "@angular/core";
 import { MatFormField, MatLabel } from '@angular/material/form-field';
 import { TodoService } from '../../services/todo-service';
 import { MatDialog } from '@angular/material/dialog';
@@ -14,6 +14,8 @@ import { MatInputModule } from '@angular/material/input';
 import { MatFabButton, MatIconButton } from '@angular/material/button';
 import { TodoEditModalComponent } from '../../common/todo-edit-modal/todo-edit-modal.component';
 import { MatToolbar } from '@angular/material/toolbar';
+import { DOCUMENT } from "@angular/common";
+import { Subscription } from "rxjs";
 
 @Component({
   selector: 'app-list',
@@ -38,13 +40,15 @@ import { MatToolbar } from '@angular/material/toolbar';
   ],
   styleUrl: './list.component.scss'
 })
-export class ListComponent implements OnInit {
-  private todoListService = inject(TodoService);
+export class ListComponent implements OnInit, OnDestroy {
+  private readonly todoListService = inject(TodoService);
+  private readonly doc = inject(DOCUMENT);
   private readonly dialog = inject(MatDialog);
-  private _pageIndex: number = 0;
-  private _pageSize: number = 10;
-  private startIndex: number = 0;
-  private endIndex: number = ((this._pageIndex + 1) * this._pageSize);
+  private subscriptions: Subscription = new Subscription();
+  protected pageIndex: number = 0;
+  protected pageSize: number = 10;
+  protected startIndex: number = 0;
+  protected endIndex: number = ((this.pageIndex + 1) * this.pageSize);
 
   public completeList = this.todoListService.todoList;
   public filteredList = signal<Todo[]>(this.completeList());
@@ -57,16 +61,12 @@ export class ListComponent implements OnInit {
     {value: false, viewValue: 'Nincs kész'},
   ];
 
-  get pageSize(): number {
-    return this._pageSize;
-  }
-
-  get pageIndex(): number {
-    return this._pageIndex;
-  }
-
   ngOnInit(): void {
-    this.listElementDescription.valueChanges.subscribe(() => this.search());
+    this.subscriptions.add(this.listElementDescription.valueChanges.subscribe(() => this.search()));
+  }
+
+  ngOnDestroy(): void {
+    this.subscriptions.unsubscribe();
   }
 
   /**
@@ -84,8 +84,8 @@ export class ListComponent implements OnInit {
    * @private
    */
   private paginateListData(): void {
-    this.startIndex = ((this._pageIndex + 1) * this._pageSize) - this._pageSize;
-    this.endIndex = ((this._pageIndex + 1) * this._pageSize);
+    this.startIndex = ((this.pageIndex + 1) * this.pageSize) - this.pageSize;
+    this.endIndex = ((this.pageIndex + 1) * this.pageSize);
     this.paginatedView.update(() => this.filteredList().slice(this.startIndex, this.endIndex));
   }
 
@@ -103,7 +103,7 @@ export class ListComponent implements OnInit {
    * @private
    */
   private blurActiveButton(): void {
-    const buttonElement = document.activeElement as HTMLElement;
+    const buttonElement = this.doc.activeElement as HTMLElement;
     buttonElement.blur();
   }
 
@@ -183,11 +183,11 @@ export class ListComponent implements OnInit {
             ? searchByDescription(item)
             : item));
 
-    const updatedPageIndex = this.filteredList().length <= this.startIndex ? 0 : this._pageIndex;
+    const updatedPageIndex = this.filteredList().length <= this.startIndex ? 0 : this.pageIndex;
     if (updatedPageIndex !== this.pageIndex) {
       this.handlePageEvent({
         pageIndex: updatedPageIndex,
-        pageSize: this._pageSize,
+        pageSize: this.pageSize,
         length: this.filteredList().length
       })
     } else {
@@ -200,8 +200,8 @@ export class ListComponent implements OnInit {
    * @param event
    */
   public handlePageEvent(event: PageEvent): void {
-    this._pageSize = event.pageSize;
-    this._pageIndex = event.pageIndex;
+    this.pageSize = event.pageSize;
+    this.pageIndex = event.pageIndex;
     this.paginateListData();
   }
 }

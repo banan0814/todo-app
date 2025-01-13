@@ -12,6 +12,8 @@ import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 
 import { ListComponent } from './list.component';
 import { TodoService } from '../../services/todo-service';
+import { HttpClientTestingModule } from '@angular/common/http/testing';
+import { RouterTestingModule } from '@angular/router/testing';
 
 describe('ListComponent', () => {
   let component: ListComponent;
@@ -31,6 +33,8 @@ describe('ListComponent', () => {
         MatIconModule,
         MatButtonModule,
         NoopAnimationsModule,
+        RouterTestingModule,
+        HttpClientTestingModule
       ],
     }).compileComponents();
 
@@ -81,24 +85,19 @@ describe('ListComponent', () => {
     expect(component.filteredList()[0].isDone).toBeTrue();
   });
 
-  it('should call navigateToEdit when edit button is clicked', fakeAsync(() => {
-    spyOn(component, 'navigateToEdit');
+  it('should navigate acnhor has the right path', async () => {
+    const todoItem = {id: '1', description: 'Test Todo', isDone: false};
+    component.completeList().length = 1;
+    component.paginatedView.update(() => [todoItem]);
 
-    //Prepare list to have element and the expected button
-    component.completeList().length = 5;
-    component.filteredList.update(() => Array.from({length: 5}, (_, i) => ({
-      id: i.toString(),
-      description: `Item ${i}`,
-      isDone: false
-    })));
-    component.paginatedView.update(() => component.filteredList());
     fixture.detectChanges();
-    flush();
 
-    const button = fixture.debugElement.nativeElement.querySelector('#navigateToEdit');
-    button.click();
-    expect(component.navigateToEdit).toHaveBeenCalled();
-  }));
+    const editButton = fixture.debugElement.nativeElement.querySelector('#navigateToEdit');
+    expect(editButton).toBeTruthy();
+
+    const routerLink = editButton?.attributes.href.value;
+    expect(routerLink).toEqual('/todo-edit');
+  });
 
   it('should call confirmDelete when delete button is clicked', fakeAsync(() => {
     spyOn(component, 'confirmDelete');
@@ -129,8 +128,8 @@ describe('ListComponent', () => {
     const pageEvent = {pageIndex: 1, pageSize: 5, length: 15};
     component.handlePageEvent(pageEvent);
 
-    expect(component.pageIndex).toBe(1);
-    expect(component.pageSize).toBe(5);
+    expect(component['pageIndex']).toBe(1);
+    expect(component['pageSize']).toBe(5);
     expect(component.paginatedView.length).toBeLessThanOrEqual(5);
     // Ellenőrzi, hogy az aktuális oldal első eleme helyes
     expect(component.paginatedView()[0].id).toBe('5');

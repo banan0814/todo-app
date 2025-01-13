@@ -6,6 +6,7 @@ import { MatInputModule } from '@angular/material/input';
 import { MatButtonModule } from '@angular/material/button';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { By } from '@angular/platform-browser';
+import { HttpClientTestingModule } from '@angular/common/http/testing';
 
 describe('TodoElementComponent', () => {
   let component: TodoElementComponent;
@@ -20,6 +21,7 @@ describe('TodoElementComponent', () => {
         MatInputModule,
         MatButtonModule,
         BrowserAnimationsModule,
+        HttpClientTestingModule
       ],
     }).compileComponents();
 

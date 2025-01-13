@@ -1,5 +1,5 @@
-import { ChangeDetectionStrategy, Component, inject, model } from '@angular/core';
-import { MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
+import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 import { ConfirmationDialogData } from '../../models/confirmation-dialog-data';
 
 @Component({
@@ -11,5 +11,9 @@ import { ConfirmationDialogData } from '../../models/confirmation-dialog-data';
 })
 export class ConfirmationModalComponent {
   readonly data = inject<ConfirmationDialogData>(MAT_DIALOG_DATA);
-  readonly confirm = model(this.data.confirm);
+  readonly dialogRef = inject(MatDialogRef<ConfirmationModalComponent>)
+
+  close(): void {
+    this.dialogRef.close(true);
+  }
 }

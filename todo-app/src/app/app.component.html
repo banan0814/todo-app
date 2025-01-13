@@ -2,7 +2,7 @@
   <mat-sidenav
     #sidenav mode="over">
     <div class="sidenav flex-col">
-      <h1>{{ title }}</h1>
+      <h2>{{ title }}</h2>
       <nav class="flex-col space-small">
         <a
           class="nav-element"
@@ -36,6 +36,7 @@
         id="menu-button"
         mat-icon-button
         aria-label="Menu gomb"
+        type='button'
         (click)="sidenav.toggle()">
         <mat-icon>menu</mat-icon>
       </button>

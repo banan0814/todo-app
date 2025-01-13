@@ -1,12 +1,13 @@
-import { Component, inject, OnInit, signal } from '@angular/core';
+import { Component, inject, OnDestroy, OnInit, signal } from '@angular/core';
 import { FormControl } from '@angular/forms';
-import { NavigationExtras, Router } from '@angular/router';
 import { MatSlideToggleChange } from '@angular/material/slide-toggle';
 import { MatDialog } from '@angular/material/dialog';
 import { PageEvent } from '@angular/material/paginator';
 import { Todo } from '../../models/todo-model';
 import { ConfirmationModalComponent } from '../../common/confirmation-modal/confirmation-modal.component';
 import { TodoService } from '../../services/todo-service';
+import { DOCUMENT } from '@angular/common';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-list',
@@ -14,14 +15,15 @@ import { TodoService } from '../../services/todo-service';
   templateUrl: './list.component.html',
   styleUrl: './list.component.scss'
 })
-export class ListComponent implements OnInit {
-  private todoListService = inject(TodoService);
-  private router = inject(Router);
+export class ListComponent implements OnInit, OnDestroy {
+  private readonly todoListService = inject(TodoService);
+  private readonly doc = inject(DOCUMENT);
   private readonly dialog = inject(MatDialog);
-  private _pageIndex: number = 0;
-  private _pageSize: number = 10;
-  private startIndex: number = 0;
-  private endIndex: number = ((this._pageIndex + 1) * this._pageSize);
+  private subscriptions: Subscription = new Subscription();
+  protected pageIndex: number = 0;
+  protected pageSize: number = 10;
+  protected startIndex: number = 0;
+  protected endIndex: number = ((this.pageIndex + 1) * this.pageSize);
 
   public completeList = this.todoListService.todoList;
   public filteredList = signal<Todo[]>(this.completeList());
@@ -34,16 +36,12 @@ export class ListComponent implements OnInit {
     {value: false, viewValue: 'Nincs kész'},
   ];
 
-  get pageSize(): number {
-    return this._pageSize;
-  }
-
-  get pageIndex(): number {
-    return this._pageIndex;
-  }
-
   ngOnInit(): void {
-    this.listElementDescription.valueChanges.subscribe(() => this.search());
+    this.subscriptions.add(this.listElementDescription.valueChanges.subscribe(() => this.search()));
+  }
+
+  ngOnDestroy(): void {
+    this.subscriptions.unsubscribe();
   }
 
   /**
@@ -61,8 +59,8 @@ export class ListComponent implements OnInit {
    * @private
    */
   private paginateListData(): void {
-    this.startIndex = ((this._pageIndex + 1) * this._pageSize) - this._pageSize;
-    this.endIndex = ((this._pageIndex + 1) * this._pageSize);
+    this.startIndex = ((this.pageIndex + 1) * this.pageSize) - this.pageSize;
+    this.endIndex = ((this.pageIndex + 1) * this.pageSize);
     this.paginatedView.update(() => this.filteredList().slice(this.startIndex, this.endIndex));
   }
 
@@ -85,23 +83,21 @@ export class ListComponent implements OnInit {
    * @param todo
    */
   public confirmDelete(todo: Todo) {
-    const confirm = signal(true);
     /*
     The following two lines are here because of an angular known issue https://github.com/angular/components/issues/30187
     seems related to how aria-hidden is applied to the background content while the dialog is active
      */
-    const buttonElement = document.activeElement as HTMLElement;
+    const buttonElement = this.doc.activeElement as HTMLElement;
     buttonElement.blur();
 
     const dialogRef = this.dialog.open(ConfirmationModalComponent, {
       data: {
         title: 'Elem törlése',
         description: `Biztosan törölni szeretné a(z) \"${todo.description}\" elemet?`,
-        confirm: confirm()
       },
     });
 
-    dialogRef.afterClosed().subscribe((result: any): void => {
+    dialogRef.afterClosed().subscribe((result: boolean): void => {
       if (result) {
         this.deleteElement(todo);
       }
@@ -109,25 +105,14 @@ export class ListComponent implements OnInit {
   }
 
   /**
-   * Edit element by using the todo-element component
-   * @param todo
-   */
-  public navigateToEdit(todo: Todo): void {
-    const navigationExtras: NavigationExtras = {state: {data: todo}};
-    this.router.navigate(['/todo-edit'], navigationExtras);
-  }
-
-  /**
    * Search by Description and by State the filters can apply azt he same time.
    * Update pagination if needed
    */
   public search(): void {
-    const searchByDescription =
+    const searchByDescription: (item: Todo) => boolean =
       (item: Todo): boolean => item.description.includes(this.listElementDescription.value!);
-    const searchByState =
-      (item: Todo): boolean => {
-        return item.isDone === this.listElementState.value;
-      }
+    const searchByState: (item: Todo) => boolean =
+      (item: Todo): boolean => item.isDone === this.listElementState.value;
     const descInput: string | null = this.listElementDescription.value;
     const stateInputHasValue: boolean = this.listElementState.value !== null;
 
@@ -140,11 +125,11 @@ export class ListComponent implements OnInit {
             ? searchByDescription(item)
             : item));
 
-    const updatedPageIndex = this.filteredList().length <= this.startIndex ? 0 : this._pageIndex;
+    const updatedPageIndex = this.filteredList().length <= this.startIndex ? 0 : this.pageIndex;
     if (updatedPageIndex !== this.pageIndex) {
       this.handlePageEvent({
         pageIndex: updatedPageIndex,
-        pageSize: this._pageSize,
+        pageSize: this.pageSize,
         length: this.filteredList().length
       })
     } else {
@@ -157,8 +142,8 @@ export class ListComponent implements OnInit {
    * @param event
    */
   public handlePageEvent(event: PageEvent): void {
-    this._pageSize = event.pageSize;
-    this._pageIndex = event.pageIndex;
+    this.pageSize = event.pageSize;
+    this.pageIndex = event.pageIndex;
     this.paginateListData();
   }
 }

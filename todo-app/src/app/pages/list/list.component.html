@@ -32,17 +32,19 @@
                 {{ todo.description }}
               </div>
               <div class="flex-row">
-                <button
+                <a
                   id="navigateToEdit"
                   mat-icon-button
                   aria-label="Edit todo element"
-                  (click)="navigateToEdit(todo)">
+                  routerLink="/todo-edit"
+                  [state]="{data: todo}">
                   <mat-icon>edit</mat-icon>
-                </button>
+                </a>
                 <button
                   id="confirmDelete"
                   mat-icon-button
                   aria-label="Delete todo element"
+                  type='button'
                   (click)="confirmDelete(todo)">
                   <mat-icon>delete</mat-icon>
                 </button>

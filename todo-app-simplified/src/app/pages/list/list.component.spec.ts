@@ -100,6 +100,25 @@ describe('ListComponent', () => {
     expect(component.confirmDelete).toHaveBeenCalled();
   }));
 
+  it('should call editButton when edit button is clicked', fakeAsync(() => {
+    spyOn(component, 'addOrEditNew');
+
+    //Prepare list to have element and the expected button
+    component.completeList().length = 5;
+    component.filteredList.update(() => Array.from({length: 5}, (_, i) => ({
+      id: i.toString(),
+      description: `Item ${i}`,
+      isDone: false
+    })));
+    component.paginatedView.update(() => component.filteredList());
+    fixture.detectChanges();
+    flush();
+
+    const button = fixture.debugElement.nativeElement.querySelector('#editButton');
+    button.click();
+    expect(component.addOrEditNew).toHaveBeenCalled();
+  }));
+
 
   it('should handle pagination correctly', () => {
     component.filteredList.update(() => Array.from({length: 15}, (_, i) => ({
@@ -110,8 +129,8 @@ describe('ListComponent', () => {
     const pageEvent = {pageIndex: 1, pageSize: 5, length: 15};
     component.handlePageEvent(pageEvent);
 
-    expect(component.pageIndex).toBe(1);
-    expect(component.pageSize).toBe(5);
+    expect(component['pageIndex']).toBe(1);
+    expect(component['pageSize']).toBe(5);
     expect(component.paginatedView.length).toBeLessThanOrEqual(5);
     // Ellenőrzi, hogy az aktuális oldal első eleme helyes
     expect(component.paginatedView()[0].id).toBe('5');

@@ -22,6 +22,7 @@ import { MatOption, MatSelect } from '@angular/material/select';
 import { MatDialogActions, MatDialogClose, MatDialogContent, MatDialogTitle } from '@angular/material/dialog';
 import { MatPaginator, MatPaginatorIntl } from '@angular/material/paginator';
 import { getHungarianPaginatorIntl } from './common/hungarian-paginator-intl';
+import { provideHttpClient } from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -58,6 +59,7 @@ import { getHungarianPaginatorIntl } from './common/hungarian-paginator-intl';
   ],
   providers: [
     provideAnimationsAsync(),
+    provideHttpClient(),
     {provide: MatPaginatorIntl, useValue: getHungarianPaginatorIntl()}
   ],
   bootstrap: [AppComponent]
