@@ -1,9 +1,11 @@
-import { computed, Injectable, signal } from '@angular/core';
+import { computed, inject, Injectable, signal } from '@angular/core';
 import { Todo } from '../models/todo-model';
+import { TodoBeService } from './backend-services/todo-be-service';
 
 @Injectable({providedIn: 'root'})
 export class TodoService {
   private _todoList = signal<Todo[]>([]);
+  private todoBeService = inject(TodoBeService);
 
   public get todoList() {
     return computed(() => this._todoList());
@@ -35,5 +37,14 @@ export class TodoService {
         ? {...listItem, isDone: todoElement.isDone, description: todoElement.description}
         : listItem
     ))
+  }
+
+  /**
+   * Posts list to BE
+   * (Not in use in the absence of further specification)
+   * @private
+   */
+  private saveTodoListToBe() {
+    this.todoBeService.postTodoList(this._todoList());
   }
 }

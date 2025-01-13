@@ -1,5 +1,6 @@
 import { inject, Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
+import { Todo } from '../../models/todo-model';
 
 @Injectable({providedIn: 'root'})
 export class TodoBeService {
@@ -18,9 +19,7 @@ export class TodoBeService {
   /**
    * Save todo list items to backend
    */
-  /*
   public postTodoList(todolist: Todo[]) {
     return this.http.post('/rest/exampleService/save', todolist);
   }
-   */
 }
